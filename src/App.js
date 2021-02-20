@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./routes/PrivateRoute";
+import { AuthProvider } from "./contexts/AuthContext";
+import Layout from "./modules/Layout/Layout";
+import Login from "./modules/Login/Login";
+
+import { ThemeProvider } from "styled-components";
+import { defaultTheme, darkTheme } from "./utils";
 
 function App() {
+  const [useDarkTheme] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ThemeProvider theme={useDarkTheme ? darkTheme : defaultTheme}>
+        <AuthProvider>
+          <div className="App">
+            <Switch>
+              <PrivateRoute exact path="/" comp={Layout} />
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/register">Register</Route>
+            </Switch>
+          </div>
+        </AuthProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
