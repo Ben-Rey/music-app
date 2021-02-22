@@ -1,0 +1,46 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { PrimaryNavButton } from "./NavButtons";
+import { BsMusicPlayer } from "react-icons/bs";
+import { PrimaryButton } from "./Buttons";
+
+<Meta title="MusicApp|Buttons" component={PrimaryNavButton} />
+
+# Buttons
+
+Buttons are used to trigger actions within an application.
+
+## Usage
+
+Buttons are used to trigger internal actions within your web applications.
+
+## Primary Buttons
+
+Primary buttons are used as a call to action and indicate the most important action on a page.
+
+<Preview withToolbar>
+  <Story name="primary nav">
+    <PrimaryNavButton>
+      <BsMusicPlayer />
+    </PrimaryNavButton>
+  </Story>
+</Preview>
+
+<Preview withToolbar>
+  <Story name="primary">
+    <PrimaryButton>
+      <BsMusicPlayer />
+    </PrimaryButton>
+  </Story>
+</Preview>
+
+<Preview withToolbar>
+  <Story name="primary large Sign In">
+    <PrimaryButton modifiers={["large"]}>Sign In</PrimaryButton>
+  </Story>
+</Preview>
+
+<Preview withToolbar>
+  <Story name="primary large Sign Up">
+    <PrimaryButton modifiers={["large"]}>Sign Up</PrimaryButton>
+  </Story>
+</Preview>

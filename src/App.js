@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./routes/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./modules/Layout/Layout";
-import Login from "./modules/Login/Login";
+import Login from "./modules/Auth/Login";
 
 import { ThemeProvider } from "styled-components";
 import { defaultTheme, darkTheme } from "./utils";

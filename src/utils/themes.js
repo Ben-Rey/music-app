@@ -1,10 +1,10 @@
-import { blue, neutral, yellow, green, red } from "./colors";
+import { blue, neutral, yellow, green, red, neuroBasic } from "./colors";
 import { primaryFont } from "./typography";
 
 export const defaultTheme = {
-  primaryColor: blue[300],
-  primaryHoverColor: blue[200],
-  primaryActiveColor: blue[100],
+  primaryColor: neuroBasic[100],
+  primaryHoverColor: neuroBasic[200],
+  primaryActiveColor: neuroBasic[100],
   formElementBackground: neutral[100],
   textOnFormElementBackground: neutral[600],
   textColorOnPrimary: neutral[100],
@@ -33,7 +33,7 @@ export const darkTheme = {
   primaryHoverColor: neutral[200],
   primaryActiveColor: neutral[300],
   formElementBackground: blue[100],
-  textOnFormElementBackground: neutral[100],
+  textOnFormElementBackground: neuroBasic[100],
   textColorOnPrimary: blue[300],
   textColor: blue[300],
   textColorInverted: neutral[100],

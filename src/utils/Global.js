@@ -8,15 +8,15 @@ export const GlobalStyle = createGlobalStyle`
         font-style: 16px;
         box-sizing: border-box;
     }
-    *, *:before, *:after{
+    *, *::before, *::after{
         box-sizing: inherit;
     }
     body {
         margin: 0;
-        font-family: ${primaryFont}
+        font-family: ${primaryFont};        
     }
     main {
         width:90%;
         margin: 0 auto
     }
-`
+`;

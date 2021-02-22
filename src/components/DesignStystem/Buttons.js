@@ -75,7 +75,7 @@ export const Button = styled.button`
   }
 `;
 
-export const PrimaryButton = styled(Button)`
+export const PrimaryButtonDs = styled(Button)`
   background-color: ${props => props.theme.primaryColor};
   color: ${props => props.theme.textColorOnPrimary};
   border: 2px solid transparent;
@@ -88,7 +88,7 @@ export const PrimaryButton = styled(Button)`
   ${applyStyleModifiers(BUTTON_MODIFIERS)};
 `;
 
-export const SecondaryButton = styled(Button)`
+export const SecondaryButtonDs = styled(Button)`
   border: 2px solid ${props => props.theme.primaryColor};
   background: none;
   color: ${props => props.theme.primaryColor};
@@ -102,7 +102,7 @@ export const SecondaryButton = styled(Button)`
   ${applyStyleModifiers(BUTTON_MODIFIERS)};
 `;
 
-export const TertiaryButton = styled(Button)`
+export const TertiaryButtonDs = styled(Button)`
   background: none;
   border: 2px solid transparent;
   color: ${props => props.theme.primaryColor};
