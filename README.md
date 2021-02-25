@@ -28,6 +28,7 @@ V2
 - Url
 
 ## User Journey
+
 ![User Journey](https://github.com/Ben-Rey/music-app/blob/master/Readme/User-Journey.png?raw=true)
 
 ## Scketch
