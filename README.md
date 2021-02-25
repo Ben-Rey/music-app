@@ -31,6 +31,6 @@ V2
 
 ![User Journey](https://github.com/Ben-Rey/music-app/blob/master/Readme/User-Journey.png?raw=true)
 
-## Scketch
+## Scketch (WIP)
 
 ![scketch](https://github.com/Ben-Rey/music-app/blob/master/Readme/sketch.png?raw=true)
