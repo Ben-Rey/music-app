@@ -31,7 +31,7 @@ V2
 
 ![User Journey](https://github.com/Ben-Rey/music-app/blob/master/Readme/User-Journey.png?raw=true)
 
-## Scketch
+## Scketch (WIP)
 
 [Figma link](https://www.figma.com/file/KFypMSHuq7zHZQR41wgq28/my-music-app?node-id=26%3A4)
 
