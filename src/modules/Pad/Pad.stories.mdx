@@ -1,0 +1,27 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+import { PrimaryButton } from "../Buttons/Buttons";
+import { PadGrid } from "./Pad";
+
+<Meta title="MusicApp|Pad" component={PadGrid} />
+
+# Pad
+
+Buttons are used to trigger actions within an application.
+
+<Preview withToolbar>
+  <Story name="PadGrid">
+
+    <PadGrid>
+      <PrimaryButton />
+      <PrimaryButton />
+      <PrimaryButton />
+      <PrimaryButton />
+      <PrimaryButton />
+      <PrimaryButton />
+      <PrimaryButton />
+      <PrimaryButton />
+      <PrimaryButton />
+    </PadGrid>
+
+  </Story>
+</Preview>

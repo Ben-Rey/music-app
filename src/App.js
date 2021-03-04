@@ -6,7 +6,7 @@ import Layout from "./modules/Layout/Layout";
 import Login from "./modules/Auth/Login";
 
 import { ThemeProvider } from "styled-components";
-import { defaultTheme, darkTheme } from "./utils";
+import { defaultTheme, darkTheme, GlobalStyle } from "./utils";
 
 function App() {
   const [useDarkTheme] = useState(false);
@@ -26,6 +26,7 @@ function App() {
           </div>
         </AuthProvider>
       </ThemeProvider>
+      <GlobalStyle />
     </Router>
   );
 }

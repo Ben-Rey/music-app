@@ -66,9 +66,11 @@ export const PrimaryButton = styled.button`
   padding: 40px;
 
   color: #fb7575;
-  background-color: #9c9c9c;
+  background-color: ${props => props.theme.primaryColor};
+
+  /* background-color: #9c9c9c; */
   background-clip: text;
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
 
   border: none;
 
@@ -81,7 +83,7 @@ export const PrimaryButton = styled.button`
   font-family: ${primaryFont};
   font-size: ${typeScale.header2};
 
-  transition: box-shadow 0.1s linear, color 0.1s linear;
+  transition: box-shadow 0.1s linear, color 0.1s linear, background-color 0.2s linear;
 
   &:disabled {
     background-color: ${props => props.theme.disabled};
@@ -99,6 +101,8 @@ export const PrimaryButton = styled.button`
 
   &:active {
     box-shadow: 1px 1px 2px 0px rgba(174, 174, 192, 0.2), -1px -1px 2px 0px rgba(255, 255, 255, 0.7);
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(240, 240, 243, 1) 90%);
   }
 
   ${applyStyleModifiers(PRIMARY_BUTTON_MODIFIERS)};

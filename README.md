@@ -33,4 +33,6 @@ V2
 
 ## Scketch
 
+[Figma link](https://www.figma.com/file/KFypMSHuq7zHZQR41wgq28/my-music-app?node-id=26%3A4)
+
 ![scketch](https://github.com/Ben-Rey/music-app/blob/master/Readme/sketch.png?raw=true)

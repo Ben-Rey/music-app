@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { primaryFont } from "./typography";
+import { neuroBasic } from "./colors";
 import { normalize } from "polished";
 
 export const GlobalStyle = createGlobalStyle`
@@ -13,7 +14,9 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         margin: 0;
-        font-family: ${primaryFont};        
+        font-family: ${primaryFont};
+        background-color: ${neuroBasic[100]}
+        
     }
     main {
         width:90%;

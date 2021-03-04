@@ -1,8 +1,25 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { typeScale, primaryFont } from "../../utils";
 import { applyStyleModifiers } from "styled-components-modifiers";
 
 export const NAV_BUTTON_MODIFIERS = {};
+
+const rotate = keyframes`
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+`;
 
 export const PrimaryNavButton = styled.button`
   width: 80px;
@@ -60,10 +77,10 @@ export const PrimaryNavButton = styled.button`
 
     position: absolute;
     z-index: -1;
-    top: 2px;
-    bottom: 2px;
-    left: 2px;
-    right: 2px;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
 
     background-color: ${props => props.theme.primaryColor};
 
@@ -91,46 +108,17 @@ export const PrimaryNavButton = styled.button`
   }
 
   &:hover::after {
-    opacity: 0.6;
-
-    -webkit-animation: rotating 1s linear infinite;
-    -moz-animation: rotating 1s linear infinite;
-    -ms-animation: rotating 1s linear infinite;
-    -o-animation: rotating 1s linear infinite;
-    animation: rotating 1s linear infinite;
-    transition: opacity 0.1s;
   }
 
   &:active::after {
-  }
+    opacity: 0.6;
 
-  @-webkit-keyframes rotating {
-    from {
-      -webkit-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    to {
-      -webkit-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes rotating {
-    from {
-      -ms-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -webkit-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    to {
-      -ms-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -webkit-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
+    -webkit-animation: ${rotate} 1s linear infinite;
+    -moz-animation: ${rotate} 1s linear infinite;
+    -ms-animation: ${rotate} 1s linear infinite;
+    -o-animation: ${rotate} 1s linear infinite;
+    animation: ${rotate} 1s linear infinite;
+    transition: opacity 0.1s;
   }
 
   ${applyStyleModifiers(NAV_BUTTON_MODIFIERS)};
