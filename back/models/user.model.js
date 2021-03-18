@@ -54,7 +54,9 @@ UserSchema.pre("save", function (next) {
 
 UserSchema.post("save", (error, doc, next) => {
   if (error.name === "MongoError" && error.code === 11000) {
-    next(new Error("There was a duplicate key error"));
+    error.message = "There was a duplicate key error";
+    error.status = 401;
+    next(error);
   } else {
     next(error);
   }

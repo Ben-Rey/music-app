@@ -59,8 +59,7 @@ module.exports = class AuthController {
         newUser,
       });
     } catch (error) {
-      console.log(error.message);
-      return res.status(401).json({ error: error.message });
+      return res.status(error.status).json({ error: error.message });
     }
   }
 
