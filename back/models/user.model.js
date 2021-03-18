@@ -3,7 +3,7 @@ const mongoose = require("mongoose"),
   SALT_WORK_FACTOR = 10;
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  pseudo: {
     type: String,
     index: { unique: true },
     minlength: 4,
@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     minlength: 7,
-    maxlength: 50,
+    maxlength: 500,
     required: [true, "Password required"],
   },
 });
@@ -50,6 +50,14 @@ UserSchema.pre("save", function (next) {
       next();
     });
   });
+});
+
+UserSchema.post("save", (error, doc, next) => {
+  if (error.name === "MongoError" && error.code === 11000) {
+    next(new Error("There was a duplicate key error"));
+  } else {
+    next(error);
+  }
 });
 
 UserSchema.methods.comparePassword = (candidatePassword, cb) => {

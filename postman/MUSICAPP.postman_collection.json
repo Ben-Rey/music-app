@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "db2d2ab9-5822-4b25-8732-9c41be2477f0",
+		"name": "MUSICAPP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create an user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an user with id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sounds",
+			"item": [
+				{
+					"name": "Get a sound",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/sounds/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sounds",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all sounds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/sounds",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sounds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create ound",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/sounds",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sounds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

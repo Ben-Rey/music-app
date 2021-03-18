@@ -4,11 +4,11 @@ require("dotenv").config();
 const router = require("./routes");
 
 const cors = require("cors");
-const decodeIDToken = require("./middlewares/authenticateToken");
+// const decodeIDToken = require("./middlewares/auth");
 
 const app = express();
 app.use(cors());
-app.use(decodeIDToken);
+// app.use(decodeIDToken);
 app.use(express.json());
 
 var server = require("http").Server(app);
