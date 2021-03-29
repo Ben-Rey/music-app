@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { PrimaryButton } from "../../components/Buttons/Buttons";
 import { Howl } from "howler";
-import wav from "./studio-drums-1/421__tictacshutup__prac-hat-2.wav";
+// import wav1 from "http://localhost:3001/sounds/423__tictacshutup__prac-hat-open-2.wav";
 import wav2 from "./studio-drums-1/422__tictacshutup__prac-hat-3.wav";
 import wav3 from "./studio-drums-1/423__tictacshutup__prac-hat-open-2.wav";
 import wav4 from "./studio-drums-1/424__tictacshutup__prac-hat-open-3.wav";
@@ -27,7 +27,7 @@ export default function Pad() {
       letter: "a",
       keyCode: 65,
       sound: new Howl({
-        src: [wav],
+        src: ["http://localhost:3001/sounds/423__tictacshutup__prac-hat-open-2.wav"],
       }),
     },
     {

@@ -1,16 +1,21 @@
 const mongoose = require("mongoose");
 
 const SoundSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     index: { unique: true },
-    required: [true, "Sound Title required"],
+    required: [true, "Sound Name required"],
     minlength: 4,
-    maxlength: 30,
+    maxlength: 60,
   },
-  url: {
+  size: {
     type: String,
-    required: [true, "Sound Url required"],
+    required: [true, "Sound Size required"],
+  },
+
+  room: {
+    type: String,
+    required: [true, "Sound Size required"],
   },
 });
 

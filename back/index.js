@@ -1,5 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
+const fileUpload = require("express-fileupload");
+
 require("dotenv").config();
 const router = require("./routes");
 
@@ -10,8 +13,10 @@ const app = express();
 app.use(cors());
 // app.use(decodeIDToken);
 app.use(express.json());
+app.use(fileUpload());
+morgan("tiny");
 
-var server = require("http").Server(app);
+const server = require("http").Server(app);
 const socketio = require("socket.io");
 // socket.io
 io = socketio(server, {
@@ -26,6 +31,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(express.static("public"));
+
 mongoose
   .connect(process.env.MONGO_CONNECT, {
     useNewUrlParser: true,
@@ -34,11 +41,11 @@ mongoose
   .then(() => {
     console.log("Connected to database");
   })
-  .catch((err) => console.log("Error connecting database", err.message));
+  .catch(err => console.log("Error connecting database", err.message));
 
 router(app);
 
-const PORT = 3001;
+const PORT = 3002;
 
 server.listen(PORT, () => {
   console.log(`Serveur is running on port ${PORT}`);
