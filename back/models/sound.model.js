@@ -12,7 +12,14 @@ const SoundSchema = new mongoose.Schema({
     type: String,
     required: [true, "Sound Size required"],
   },
-
+  key: {
+    type: String,
+    required: [true, "Key is required"],
+  },
+  keyCode: {
+    type: String,
+    required: [true, "KeyCode is required"],
+  },
   room: {
     type: String,
     required: [true, "Sound Size required"],

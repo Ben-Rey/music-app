@@ -45,7 +45,7 @@ mongoose
 
 router(app);
 
-const PORT = 3002;
+const PORT = 3001;
 
 server.listen(PORT, () => {
   console.log(`Serveur is running on port ${PORT}`);

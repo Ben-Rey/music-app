@@ -3,7 +3,7 @@ const soundController = require("../controllers/sounds.controller");
 const AuthMiddleware = require("../middlewares/auth");
 
 soundRouter.get("/:room?", new soundController().list);
-soundRouter.get("/:soundName", new soundController().get);
+soundRouter.get("/sound/:soundName", new soundController().get);
 soundRouter.post("/", new soundController().add);
 soundRouter.delete("/:soundName", new soundController().delete);
 

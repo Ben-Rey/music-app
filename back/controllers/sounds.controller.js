@@ -18,7 +18,13 @@ module.exports = class SoundController {
     if (sound.length) return res.status(401).send("Sound already exists");
 
     try {
-      await SoundModel.create({ name: fileToUpload.name, size: fileToUpload.size });
+      await SoundModel.create({
+        name: fileToUpload.name,
+        size: fileToUpload.size,
+        room: req.body.room,
+        key: req.body.key,
+        keyCode: req.body.keyCode,
+      });
     } catch (error) {
       return res.status(401).send("Error Database");
     }
@@ -27,7 +33,6 @@ module.exports = class SoundController {
       path.join(__dirname, "../public", `sounds/${fileToUpload.name}`),
       fileToUpload.data,
       err => {
-        console.log(err);
         if (err) {
           SoundModel.deleteOne({ name: fileToUpload.name });
           return res.send("File not supported");
@@ -54,19 +59,20 @@ module.exports = class SoundController {
 
   async list(req, res) {
     let room = req.params.room ? req.params.room : "main";
-    const sounds = await SoundModel.find({});
+    const sounds = await SoundModel.find({ room: room });
     res.send(sounds);
   }
 
   /* ------------------------------ Get Sounds list ----------------------------- */
 
   async delete(req, res) {
+    console.log(req.params.soundName);
     try {
-      await SoundModel.delete({ name: req.params.soundName });
+      let value = await SoundModel.deleteOne({ name: req.params.soundName });
+      if (value.deletedCount > 0) return res.send("Deleted");
+      return res.status(404).send("Not found");
     } catch (error) {
       console.log(error);
     }
-
-    res.send("");
   }
 };
