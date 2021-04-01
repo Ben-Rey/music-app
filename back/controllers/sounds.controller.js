@@ -55,6 +55,11 @@ module.exports = class SoundController {
     }
   }
 
+  play(req, res) {
+    req.io.emit("PLAYSOUND", req.params.key);
+    res.status(200).send("");
+  }
+
   /* ------------------------------ Get Sounds list ----------------------------- */
 
   async list(req, res) {

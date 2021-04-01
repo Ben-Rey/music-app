@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Howl } from "howler";
+
 import styled from "styled-components";
 import { PrimaryButton } from "../../components/Buttons/Buttons";
-import { Howl } from "howler";
-import axios from "axios";
+// import { Howl } from "howler";
+import { api } from "../../api";
 
+import { useIo } from "../../contexts/ioContext";
 export const PadGrid = styled.div`
   margin: 15px;
   display: grid;
@@ -13,12 +16,13 @@ export const PadGrid = styled.div`
 `;
 
 export default function Pad() {
+  const [sounds, setSounds] = useState([]);
+  const { io } = useIo();
   const [mouseDown, setMouseDown] = React.useState(false);
-  const [keys, setKeys] = React.useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/sounds/`).then(res => {
-      setKeys(
+    api.get(`/sounds/`).then(res => {
+      setSounds(
         res.data.map(sound => ({
           letter: sound.key,
           keyCode: sound.keyCode,
@@ -30,14 +34,30 @@ export default function Pad() {
     });
   }, []);
 
+  useEffect(() => {
+    if (io && sounds) {
+      io.on("PLAYSOUND", data => {
+        const key = sounds.find(sound => sound.letter === data);
+        if (key) {
+          key.sound.play();
+        }
+      });
+    }
+  }, [io, sounds]);
+
   const onKeyDown = e => {
-    console.log(keys);
     if (e.repeat) return;
-    const key = keys.find(key => key.keyCode === e.keyCode);
-    key.sound.play();
+    const sound = sounds.find(key => key.keyCode == e.keyCode);
+    if (sound) {
+      playSound(sound.letter);
+    }
   };
   const onKeyUp = () => {
     // console.log(e.keyCode);
+  };
+
+  const playSound = key => {
+    api.get(`/sounds/play/${key}`);
   };
 
   React.useEffect(() => {
@@ -56,15 +76,15 @@ export default function Pad() {
       onMouseDown={() => setMouseDown(true)}
       onMouseUp={() => setMouseDown(false)}
     >
-      {keys.map(key => (
+      {sounds.map(sound => (
         <PrimaryButton
-          key={key.letter}
-          onMouseDown={() => key.sound.play()}
+          key={sound.letter}
+          onMouseDown={() => playSound(sound.keyCode)}
           onMouseEnter={() => {
-            if (mouseDown) key.sound.play();
+            if (mouseDown) playSound(sound.keyCode);
           }}
         >
-          {key.letter}
+          {sound.letter}
         </PrimaryButton>
       ))}
     </PadGrid>

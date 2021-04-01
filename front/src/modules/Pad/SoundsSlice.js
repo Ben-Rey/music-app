@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { api } from "../../api";
+import { Howl } from "howler";
 
 export const SoundsSlice = createSlice({
   name: "pad",
@@ -6,7 +8,8 @@ export const SoundsSlice = createSlice({
     sounds: [],
   },
   reducers: {
-    getSounds: (state, action) => {
+    setSounds: (state, action) => {
+      console.log(action.payload);
       state.sounds = action.payload;
     },
     // updateLike: (state, action) => {
@@ -15,7 +18,34 @@ export const SoundsSlice = createSlice({
   },
 });
 
-export const { getSounds } = SoundsSlice.actions;
+export const { setSounds } = SoundsSlice.actions;
+
+export const getSoundsFromGroup = (group = "") => dispatch => {
+  api.get(`/sounds/${group}`).then(res => {
+    const sounds = res.data.map(sound => ({
+      letter: sound.key,
+      keyCode: sound.keyCode,
+      sound: new Howl({
+        src: [`http://localhost:3001/sounds/${sound.name}`],
+      }),
+    }));
+    dispatch(setSounds(sounds));
+  });
+};
+
+export const playSound = (state, key) => {
+  console.log(key);
+
+  return state;
+  // const key = keys.find(key => key.keyCode == e.keyCode);
+  // if (key) {
+  //   key.sound.play();
+  //   playSound("z");
+  // }
+};
+
+export const selectSounds = state => state.sounds;
+export const test = () => console.log("here");
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

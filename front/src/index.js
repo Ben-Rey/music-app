@@ -5,9 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import connect from "./socket-api";
-
-connect("http://localhost:3001", store);
 
 ReactDOM.render(
   <React.StrictMode>

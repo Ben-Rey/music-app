@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import postsReducer from "../modules/Pad/SoundsSlice";
+import soundsReducer from "../modules/Pad/SoundsSlice";
 
 export default configureStore({
   reducer: {
-    posts: postsReducer,
+    sounds: soundsReducer,
   },
 });

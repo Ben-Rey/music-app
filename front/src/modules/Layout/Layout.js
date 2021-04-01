@@ -13,3 +13,5 @@ export default function Layout() {
     </>
   );
 }
+
+// TODO - Add pannel to the right (hide in mobile mode - burger)
