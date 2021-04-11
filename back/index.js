@@ -25,6 +25,46 @@ io = socketio(server, {
   },
 });
 
+io.use((socket, next) => {
+  // Add user to connected users
+  //
+
+  const username = socket.handshake.auth.username;
+  if (!username) {
+    return next(new Error("invalid username"));
+  }
+  socket.username = username;
+  next();
+});
+
+io.on("connection", socket => {
+  const users = [];
+
+  for (let [id, socket] of io.of("/").sockets) {
+    users.push({
+      userID: id,
+      username: socket.username,
+    });
+  }
+
+  socket.emit("users", users);
+});
+
+io.on("connection", socket => {
+  // notify existing users
+  socket.broadcast.emit("user connected", {
+    userID: socket.id,
+    username: socket.username,
+  });
+
+  socket.on("disconnect", function () {
+    socket.broadcast.emit("user disconnected", {
+      userID: socket.id,
+      username: socket.username,
+    });
+  });
+});
+
 // now all request have access to io
 app.use(function (req, res, next) {
   req.io = io;

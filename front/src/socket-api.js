@@ -5,9 +5,9 @@ import { setSoundToPlay } from "./modules/Pad/PadSlice";
 // used to update the store
 // TODO: add rooms / namespace for more clarity
 const connect = (url, store) => {
-  const io = socketIOClient(url);
+  const io = socketIOClient(url, { autoConnect: false });
   console.log("socket connected");
-
+  io.connect();
   io.on("PLAYSOUND", data => {
     const sound = {
       timestamp: Date.now(),

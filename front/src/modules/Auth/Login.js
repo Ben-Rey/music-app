@@ -8,33 +8,41 @@ export default function Login() {
   const [showModal, setShowModal] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login, signup } = useAuth();
 
   //   const [error, setError] = useState("");
   //   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  async function handleSubmit(e) {
+  async function handleLogin(e) {
     e.preventDefault();
 
     try {
-      //   setError("");
-      //   setLoading(true);
       await login(email, password);
       history.push("/");
     } catch {
       console.log("wrong password");
+    }
+  }
+
+  async function handleRegister(e) {
+    console.log("here");
+    e.preventDefault();
+    try {
+      await signup(email, password);
+      history.push("/");
+    } catch (err) {
+      console.log(err);
       //   setError("Failed to log in");
     }
-
-    // setLoading(false);
   }
   return (
     <div>
       <SignInModal
         showModal={showModal}
         setShowModal={setShowModal}
-        handleSubmit={handleSubmit}
+        handleLogin={handleLogin}
+        handleRegister={handleRegister}
         setEmail={setEmail}
         setPassword={setPassword}
       />

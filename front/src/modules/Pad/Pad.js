@@ -7,6 +7,7 @@ import { PrimaryButton } from "../../components/Buttons/Buttons";
 // import { Howl } from "howler";
 import { api } from "../../api";
 import { ResponsiveContext } from "grommet";
+import { useMouse } from "../../contexts/MouseContext";
 
 export const PadGrid = styled.div`
   margin: 15px;
@@ -24,9 +25,10 @@ export const PadGrid = styled.div`
 export default function Pad() {
   const [sounds, setSounds] = useState([]);
   const soundToPlay = useSelector(state => state.pad.soundToPlay);
-  const [mouseDown, setMouseDown] = React.useState(false);
-  const [keyDown, setKeyDown] = React.useState([]);
+
+  const [keysDown, setKeysDown] = React.useState([]);
   const size = React.useContext(ResponsiveContext);
+  const { mouseDown } = useMouse();
 
   useEffect(() => {
     api.get(`/sounds/`).then(res => {
@@ -45,9 +47,11 @@ export default function Pad() {
   // useEffect(() => {
   //   console.log(size);
   // }, [size]);
+  // useEffect(() => {
+  //   console.log(keysDown)
+  // }, [keysDown]);
 
   useEffect(() => {
-    console.log(soundToPlay);
     const key = sounds.find(sound => sound.letter === soundToPlay.letter);
     if (key) {
       key.sound.play();
@@ -65,13 +69,13 @@ export default function Pad() {
   };
 
   const playSoundSocket = key => {
-    setKeyDown(keyDown.concat(key));
     api.get(`/sounds/play/${key}`);
+    if (!keysDown.includes(key)) setKeysDown(keysDown.concat(key));
   };
 
-  const removeKeyDown = key => {
-    setKeyDown(
-      keyDown.filter(value => {
+  const removeKeyDown = async key => {
+    await setKeysDown(
+      keysDown.filter(value => {
         return value !== key;
       })
     );
@@ -88,21 +92,19 @@ export default function Pad() {
   });
 
   return (
-    <PadGrid
-      tabIndex="0"
-      onMouseDown={() => setMouseDown(true)}
-      onMouseUp={() => setMouseDown(false)}
-      gridEnd={size === "small" ? "5" : "4"}
-    >
+    <PadGrid tabIndex="0" gridEnd={size === "small" ? "5" : "4"}>
       {sounds.map(sound => (
         <PrimaryButton
-          modifiers={keyDown.includes(sound.letter) ? "active" : ""}
+          modifiers={keysDown.includes(sound.letter) ? "active" : ""}
           key={sound.letter}
           onMouseDown={() => playSoundSocket(sound.letter)}
           onMouseUp={() => removeKeyDown(sound.letter)}
           // Bugg when click and leave window
           onMouseEnter={() => {
             if (mouseDown) playSoundSocket(sound.letter);
+          }}
+          onMouseLeave={() => {
+            if (keysDown.length > 0) removeKeyDown(sound.letter);
           }}
         >
           {sound.letter}

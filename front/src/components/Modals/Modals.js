@@ -142,7 +142,14 @@ export const SignUpModal = ({ showModal, setShowModal }) => {
   );
 };
 
-export const SignInModal = ({ showModal, setShowModal, handleSubmit, setEmail, setPassword }) => (
+export const SignInModal = ({
+  showModal,
+  setShowModal,
+  handleLogin,
+  handleRegister,
+  setEmail,
+  setPassword,
+}) => (
   <ModalLayout>
     <animated.div style={useSpring(getAnimation(showModal))}>
       <ColumnModalWrapper>
@@ -152,12 +159,16 @@ export const SignInModal = ({ showModal, setShowModal, handleSubmit, setEmail, s
           <PasswordInput label="Password" setPassword={setPassword} />
 
           <ButtonsModalWrapper>
-            <PrimaryButton style={{ margin: "16px 0" }} modifiers={["large"]}>
+            <PrimaryButton
+              style={{ margin: "16px 0" }}
+              modifiers={["large"]}
+              onClick={e => handleRegister(e)}
+            >
               Sign Up
             </PrimaryButton>
             <PrimaryButton
               style={{ margin: "20px 0" }}
-              onClick={e => handleSubmit(e)}
+              onClick={e => handleLogin(e)}
               modifiers={["large"]}
             >
               Sign In
