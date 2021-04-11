@@ -2,23 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 import { api } from "../../api";
 import { Howl } from "howler";
 
-export const SoundsSlice = createSlice({
+export const PadSlice = createSlice({
   name: "pad",
   initialState: {
     sounds: [],
+    soundToPlay: "",
   },
   reducers: {
     setSounds: (state, action) => {
       console.log(action.payload);
       state.sounds = action.payload;
     },
-    // updateLike: (state, action) => {
-    //     state.value = action.payload;
-    // },
+    setSoundToPlay: (state, action) => {
+      state.soundToPlay = action.payload;
+    },
   },
 });
 
-export const { setSounds } = SoundsSlice.actions;
+export const { setSounds, setSoundToPlay } = PadSlice.actions;
 
 export const getSoundsFromGroup = (group = "") => dispatch => {
   api.get(`/sounds/${group}`).then(res => {
@@ -33,23 +34,9 @@ export const getSoundsFromGroup = (group = "") => dispatch => {
   });
 };
 
-export const playSound = (state, key) => {
-  console.log(key);
-
-  return state;
-  // const key = keys.find(key => key.keyCode == e.keyCode);
-  // if (key) {
-  //   key.sound.play();
-  //   playSound("z");
-  // }
-};
-
-export const selectSounds = state => state.sounds;
-export const test = () => console.log("here");
-
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 // export const selectPosts = state => state.posts.value;
 
-export default SoundsSlice.reducer;
+export default PadSlice.reducer;

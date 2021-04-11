@@ -1,5 +1,6 @@
 import { blue, neutral, yellow, green, red, neuroBasic } from "./colors";
 import { primaryFont } from "./typography";
+import { neumoShadow } from "./shadows";
 
 export const defaultTheme = {
   primaryColor: neuroBasic[100],
@@ -15,6 +16,8 @@ export const defaultTheme = {
   textOnDisabled: neutral[300],
   textFieldBackground: neutral[200],
   textFieldLabelColor: neutral[500],
+  shadowNeutral: neumoShadow["neutral"],
+  shadowActive: neumoShadow["active"],
   status: {
     warningColor: yellow[100],
     warningColorHover: yellow[200],

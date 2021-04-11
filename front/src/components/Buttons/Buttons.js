@@ -18,6 +18,11 @@ export const PRIMARY_BUTTON_MODIFIERS = {
   border-radius: 10px;
   `,
 
+  active: () => `
+  box-shadow: 1px 1px 2px 0px rgba(174, 174, 192, 0.2), -1px -1px 2px 0px rgba(255, 255, 255, 0.7);
+  background: linear-gradient(151deg,#e2e2e2 2.06%,#ffffff 95.18%),#e3edf7;
+  `,
+
   warning: ({ theme }) => `
     background-color: ${theme.status.warningColor};
     color: ${theme.textColorInverted};
@@ -62,11 +67,14 @@ export const PrimaryButton = styled.button`
 
   align-items: center;
   justify-content: center;
-
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
   padding: 40px;
 
   color: #fb7575;
-  background-color: ${props => props.theme.primaryColor};
+
+  background: linear-gradient(133.7deg, #dddddd 2.06%, #ffffff 95.18%), #e3edf7;
 
   /* background-color: #9c9c9c; */
   background-clip: text;
@@ -74,7 +82,7 @@ export const PrimaryButton = styled.button`
 
   border: none;
 
-  box-shadow: 3px 3px 7px 0px rgba(174, 174, 192, 0.4), -3px -3px 7px 0px rgba(255, 255, 255, 1);
+  box-shadow: ${props => props.theme.shadowNeutral};
 
   overflow: hidden;
 
@@ -99,11 +107,7 @@ export const PrimaryButton = styled.button`
     outline: none;
   }
 
-  &:active {
-    box-shadow: 1px 1px 2px 0px rgba(174, 174, 192, 0.2), -1px -1px 2px 0px rgba(255, 255, 255, 0.7);
-    background: rgb(255, 255, 255);
-    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(240, 240, 243, 1) 90%);
-  }
+}
 
   ${applyStyleModifiers(PRIMARY_BUTTON_MODIFIERS)};
 `;

@@ -5,13 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import { Grommet } from "grommet";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Grommet>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+  </Grommet>,
   document.getElementById("root")
 );
 

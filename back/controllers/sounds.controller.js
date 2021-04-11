@@ -26,7 +26,7 @@ module.exports = class SoundController {
         keyCode: req.body.keyCode,
       });
     } catch (error) {
-      return res.status(401).send("Error Database");
+      return res.status(401).send(error.message);
     }
 
     fs.writeFile(

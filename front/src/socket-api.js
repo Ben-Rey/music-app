@@ -1,5 +1,5 @@
 import socketIOClient from "socket.io-client";
-// import { playSound } from "./modules/Pad/SoundsSlice";
+import { setSoundToPlay } from "./modules/Pad/PadSlice";
 
 // here is all the receivers for socketio
 // used to update the store
@@ -9,16 +9,12 @@ const connect = (url, store) => {
   console.log("socket connected");
 
   io.on("PLAYSOUND", data => {
-    console.log(store);
-    console.log(data);
-    // console.log("socket received:", data);
-    // store.dispatch(playSound("a"));
+    const sound = {
+      timestamp: Date.now(),
+      letter: data,
+    };
+    store.dispatch(setSoundToPlay(sound));
   });
-
-  // io.on("UPDATE_LIKE", data => {
-  //   console.log("socket received:", data);
-  //   store.dispatch(update(data));
-  // });
 };
 
 export default connect;

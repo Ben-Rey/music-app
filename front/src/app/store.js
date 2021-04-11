@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import soundsReducer from "../modules/Pad/SoundsSlice";
+import padReducer from "../modules/Pad/PadSlice";
 
 export default configureStore({
   reducer: {
-    sounds: soundsReducer,
+    pad: padReducer,
   },
 });
