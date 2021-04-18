@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "firebase": "^8.2.8",
+    "grommet": "^2.17.1",
     "howler": "^2.2.1",
     "polished": "^4.1.1",
     "react": "^17.0.1",
@@ -19,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-spring": "^8.0.27",
+    "socket.io-client": "^4.0.1",
     "styled-components": "^5.2.1",
     "styled-components-modifiers": "^1.2.5",
     "web-vitals": "^1.1.0"
