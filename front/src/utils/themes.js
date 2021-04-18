@@ -18,6 +18,7 @@ export const defaultTheme = {
   textFieldLabelColor: neutral[500],
   shadowNeutral: neumoShadow["neutral"],
   shadowActive: neumoShadow["active"],
+  shadowInner: neumoShadow["inner"],
   status: {
     warningColor: yellow[100],
     warningColorHover: yellow[200],

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Pad from "../Pad/Pad";
 
-import { NavLayout } from "../../components";
+import { NavLayout, Box } from "../../components";
 
 import styled from "styled-components";
 import { ResponsiveContext } from "grommet";
@@ -37,7 +37,12 @@ export default function Layout() {
         <PrimaryNavButton />
       </FlexCenter> */}
       <NavLayout display={size === "small" ? "none" : "block"}>
-        {users && users.list.map(user => <div key={user.userID}>{user.username}</div>)}
+        {users &&
+          users.list.map(user => (
+            <Box key={user.userID}>
+              <div key={user.userID}>{user.username}</div>
+            </Box>
+          ))}
       </NavLayout>
     </LayoutGrid>
   );

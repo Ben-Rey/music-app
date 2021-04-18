@@ -60,7 +60,6 @@ export default function Pad() {
 
   const onKeyDown = e => {
     if (e.repeat) return;
-
     playSoundSocket(e.key);
   };
 
@@ -70,11 +69,11 @@ export default function Pad() {
 
   const playSoundSocket = key => {
     api.get(`/sounds/play/${key}`);
-    if (!keysDown.includes(key)) setKeysDown(keysDown.concat(key));
+    if (!keysDown.includes(key)) setKeysDown([...keysDown, key]);
   };
 
-  const removeKeyDown = async key => {
-    await setKeysDown(
+  const removeKeyDown = key => {
+    setKeysDown(
       keysDown.filter(value => {
         return value !== key;
       })
@@ -97,7 +96,15 @@ export default function Pad() {
         <PrimaryButton
           modifiers={keysDown.includes(sound.letter) ? "active" : ""}
           key={sound.letter}
-          onMouseDown={() => playSoundSocket(sound.letter)}
+          onTouchStart={() => {
+            if (size === "small") playSoundSocket(sound.letter);
+          }}
+          onTouchEnd={() => {
+            if (size === "small") removeKeyDown(sound.letter);
+          }}
+          onMouseDown={() => {
+            if (size !== "small") playSoundSocket(sound.letter);
+          }}
           onMouseUp={() => removeKeyDown(sound.letter)}
           // Bugg when click and leave window
           onMouseEnter={() => {

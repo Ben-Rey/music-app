@@ -90,7 +90,13 @@ export const PrimaryButton = styled.button`
 
   font-family: ${primaryFont};
   font-size: ${typeScale.header2};
-
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  
   transition: box-shadow 0.1s linear, color 0.1s linear, background-color 0.2s linear;
 
   &:disabled {

@@ -5,6 +5,7 @@ import { typeScale, primaryFont } from "../../utils";
 import { Illustrations, CloseIcon } from "../../assets";
 import { PrimaryButton } from "../Buttons/Buttons";
 import { EmailInput, PasswordInput } from "./TextFields";
+import { ResponsiveContext } from "grommet";
 
 const getAnimation = showModal => {
   return {
@@ -18,7 +19,7 @@ const ModalLayout = styled.div`
   height: 100vh;
   display: flex;
 
-  flex-direction: column;
+  flex-direction: "column";
   justify-content: center;
   align-items: center;
 
@@ -85,7 +86,7 @@ const ModalWrapper = styled.div`
 `;
 
 const ColumnModalWrapper = styled(ModalWrapper)`
-  flex-direction: row;
+  flex-direction: ${props => (props.size === "small" ? "column" : "row")};
   justify-content: space-around;
 `;
 
@@ -121,10 +122,12 @@ const CloseModalButton = styled.button`
 `;
 
 export const SignUpModal = ({ showModal, setShowModal }) => {
+  const size = React.useContext(ResponsiveContext);
+
   return (
     <ModalLayout>
       <animated.div style={useSpring(getAnimation(showModal))}>
-        <ModalWrapper>
+        <ModalWrapper size={size}>
           <img
             src={Illustrations.MoreMusic}
             alt="Sign up for an account!"
@@ -149,41 +152,45 @@ export const SignInModal = ({
   handleRegister,
   setEmail,
   setPassword,
-}) => (
-  <ModalLayout>
-    <animated.div style={useSpring(getAnimation(showModal))}>
-      <ColumnModalWrapper>
-        <div>
-          <ModalHeader>Sign In</ModalHeader>
-          <EmailInput label="Email" setEmail={setEmail} />
-          <PasswordInput label="Password" setPassword={setPassword} />
+}) => {
+  const size = React.useContext(ResponsiveContext);
 
-          <ButtonsModalWrapper>
-            <PrimaryButton
-              style={{ margin: "16px 0" }}
-              modifiers={["large"]}
-              onClick={e => handleRegister(e)}
-            >
-              Sign Up
-            </PrimaryButton>
-            <PrimaryButton
-              style={{ margin: "20px 0" }}
-              onClick={e => handleLogin(e)}
-              modifiers={["large"]}
-            >
-              Sign In
-            </PrimaryButton>
-          </ButtonsModalWrapper>
-        </div>
-        <img
-          src={Illustrations.MoreMusic}
-          alt="Sign in to your account"
-          style={{ height: "40%" }}
-        />
-        <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
-          <CloseIcon />
-        </CloseModalButton>
-      </ColumnModalWrapper>
-    </animated.div>
-  </ModalLayout>
-);
+  return (
+    <ModalLayout>
+      <animated.div style={useSpring(getAnimation(showModal))}>
+        <ColumnModalWrapper size={size}>
+          <div>
+            <ModalHeader>Sign In</ModalHeader>
+            <EmailInput label="Email" setEmail={setEmail} />
+            <PasswordInput label="Password" setPassword={setPassword} />
+
+            <ButtonsModalWrapper>
+              <PrimaryButton
+                style={{ margin: "16px 0" }}
+                modifiers={["large"]}
+                onClick={e => handleRegister(e)}
+              >
+                Sign Up
+              </PrimaryButton>
+              <PrimaryButton
+                style={{ margin: "20px 0" }}
+                onClick={e => handleLogin(e)}
+                modifiers={["large"]}
+              >
+                Sign In
+              </PrimaryButton>
+            </ButtonsModalWrapper>
+          </div>
+          <img
+            src={Illustrations.MoreMusic}
+            alt="Sign in to your account"
+            style={{ height: "40%" }}
+          />
+          <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
+            <CloseIcon />
+          </CloseModalButton>
+        </ColumnModalWrapper>
+      </animated.div>
+    </ModalLayout>
+  );
+};

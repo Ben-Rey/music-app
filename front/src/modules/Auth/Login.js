@@ -16,7 +16,7 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-
+    alert("uzdhfoz");
     try {
       await login(email, password);
       history.push("/");
