@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import Pad from "../Pad/Pad";
 
-import { NavLayout, Box } from "../../components";
+import { NavLayout, BoxInnerShadow, BoxCenterColumn } from "../../components";
+import { Textfit } from "react-textfit";
 
 import styled from "styled-components";
 import { ResponsiveContext } from "grommet";
@@ -37,12 +38,16 @@ export default function Layout() {
         <PrimaryNavButton />
       </FlexCenter> */}
       <NavLayout display={size === "small" ? "none" : "block"}>
-        {users &&
-          users.list.map(user => (
-            <Box key={user.userID}>
-              <div key={user.userID}>{user.username}</div>
-            </Box>
-          ))}
+        <BoxCenterColumn>
+          {users &&
+            users.list.map(user => (
+              <BoxInnerShadow key={user.userID} width="80%">
+                <div key={user.userID}>
+                  <Textfit mode="single">{user.username}</Textfit>
+                </div>
+              </BoxInnerShadow>
+            ))}
+        </BoxCenterColumn>
       </NavLayout>
     </LayoutGrid>
   );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { typeScale, primaryFont } from "../../utils";
 
 const Input = styled.input`
-  width: 316px;
+  width: 80%;
   height: 52px;
   background-color: ${props => props.theme.textFieldBackground};
   border: none;
@@ -28,7 +28,9 @@ const logger = e => {
 };
 
 export const EmailInput = ({ label, placeholder, setEmail = logger }) => (
-  <div style={{ display: "flex", flexDirection: "column", marginTop: "16px" }}>
+  <div
+    style={{ display: "flex", flexDirection: "column", marginTop: "16px", alignItems: "center" }}
+  >
     <Label htmlFor="email">{label}</Label>
     <Input
       id="email"
@@ -40,7 +42,9 @@ export const EmailInput = ({ label, placeholder, setEmail = logger }) => (
 );
 
 export const PasswordInput = ({ label, placeholder, setPassword = logger }) => (
-  <div style={{ display: "flex", flexDirection: "column", marginTop: "16px" }}>
+  <div
+    style={{ display: "flex", flexDirection: "column", marginTop: "16px", alignItems: "center" }}
+  >
     <Label htmlFor="password">{label}</Label>
     <Input
       id="password"

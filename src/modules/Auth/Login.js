@@ -16,12 +16,15 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-    alert("uzdhfoz");
+
     try {
       await login(email, password);
       history.push("/");
-    } catch {
-      console.log("wrong password");
+    } catch (e) {
+      console.log(e);
+      if (e.code.includes("invalid-email")) console.log("Invalid email");
+      if (e.code.includes("user-not-found")) console.log("User not found");
+      if (e.code.includes("wrong-password")) console.log("Wrong password");
     }
   }
 

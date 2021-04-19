@@ -6,6 +6,7 @@ import { Illustrations, CloseIcon } from "../../assets";
 import { PrimaryButton } from "../Buttons/Buttons";
 import { EmailInput, PasswordInput } from "./TextFields";
 import { ResponsiveContext } from "grommet";
+import { NavLayout, BoxInnerShadow, BoxCenterColumn } from "../../components";
 
 const getAnimation = showModal => {
   return {
@@ -15,7 +16,7 @@ const getAnimation = showModal => {
 };
 
 const ModalLayout = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
 
@@ -23,7 +24,6 @@ const ModalLayout = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: linear-gradient(270deg, #5d26c1, #a17fe0, #59c173);
   background-size: 600% 600%;
 
   -webkit-animation: AnimationName 10s ease infinite;
@@ -63,11 +63,15 @@ const ModalLayout = styled.div`
       background-position: 0% 50%;
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ModalWrapper = styled.div`
-  width: 800px;
-  height: 500px;
+  width: 80%;
+  // height: 500px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   font-family: ${primaryFont};
 
@@ -96,14 +100,14 @@ const ModalHeader = styled.h3`
 
 const SignUpText = styled.p`
   font-size: ${typeScale.paragraph};
-  max-width: 70%;
+  width: 70%;
   text-align: center;
 `;
 
 const ButtonsModalWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const CloseModalButton = styled.button`
@@ -114,8 +118,8 @@ const CloseModalButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 40px;
-  right: 40px;
+  top: 20px;
+  right: 10px;
   width: 40px;
   height: 40px;
   padding: 0;
@@ -126,21 +130,21 @@ export const SignUpModal = ({ showModal, setShowModal }) => {
 
   return (
     <ModalLayout>
-      <animated.div style={useSpring(getAnimation(showModal))}>
-        <ModalWrapper size={size}>
-          <img
-            src={Illustrations.MoreMusic}
-            alt="Sign up for an account!"
-            style={{ height: "40%" }}
-          />
-          <ModalHeader>Sign Up</ModalHeader>
-          <SignUpText>Sign up today to get access to all of our content and features!</SignUpText>
-          <PrimaryButton onClick={() => console.log("You signed up!")}>Sign Up</PrimaryButton>
-          <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
-            <CloseIcon />
-          </CloseModalButton>
-        </ModalWrapper>
-      </animated.div>
+      {/* <animated.div style={useSpring(getAnimation(showModal))}> */}
+      <ModalWrapper size={size}>
+        <img
+          src={Illustrations.MoreMusic}
+          alt="Sign up for an account!"
+          style={{ height: "40%" }}
+        />
+        <ModalHeader>Sign Up</ModalHeader>
+        <SignUpText>Sign up today to get access to all of our content and features!</SignUpText>
+        <PrimaryButton onClick={() => console.log("You signed up!")}>Sign Up</PrimaryButton>
+        <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
+          <CloseIcon />
+        </CloseModalButton>
+      </ModalWrapper>
+      {/* </animated.div> */}
     </ModalLayout>
   );
 };
@@ -157,40 +161,42 @@ export const SignInModal = ({
 
   return (
     <ModalLayout>
-      <animated.div style={useSpring(getAnimation(showModal))}>
-        <ColumnModalWrapper size={size}>
-          <div>
-            <ModalHeader>Sign In</ModalHeader>
-            <EmailInput label="Email" setEmail={setEmail} />
-            <PasswordInput label="Password" setPassword={setPassword} />
+      {/* <animated.div style={useSpring(getAnimation(showModal))}> */}
+      <ColumnModalWrapper size={size}>
+        <div style={{ width: "100%" }}>
+          <ModalHeader></ModalHeader>
+          <EmailInput label="Email" setEmail={setEmail} />
+          <PasswordInput label="Password" setPassword={setPassword} />
 
-            <ButtonsModalWrapper>
-              <PrimaryButton
+          <ButtonsModalWrapper>
+            {/* <PrimaryButton
                 style={{ margin: "16px 0" }}
                 modifiers={["large"]}
                 onClick={e => handleRegister(e)}
               >
                 Sign Up
-              </PrimaryButton>
-              <PrimaryButton
-                style={{ margin: "20px 0" }}
-                onClick={e => handleLogin(e)}
-                modifiers={["large"]}
-              >
-                Sign In
-              </PrimaryButton>
-            </ButtonsModalWrapper>
-          </div>
+              </PrimaryButton> */}
+            <PrimaryButton
+              style={{ margin: "20px 0" }}
+              onClick={e => handleLogin(e)}
+              modifiers={["large"]}
+            >
+              Sign In
+            </PrimaryButton>
+          </ButtonsModalWrapper>
+        </div>
+        <BoxCenterColumn>
           <img
             src={Illustrations.MoreMusic}
             alt="Sign in to your account"
-            style={{ height: "40%" }}
+            style={{ maxHeight: "200px" }}
           />
-          <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
-            <CloseIcon />
-          </CloseModalButton>
-        </ColumnModalWrapper>
-      </animated.div>
+        </BoxCenterColumn>
+        {/* <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
+          <CloseIcon />
+        </CloseModalButton> */}
+      </ColumnModalWrapper>
+      {/* </animated.div> */}
     </ModalLayout>
   );
 };

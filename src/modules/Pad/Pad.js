@@ -73,11 +73,15 @@ export default function Pad() {
   };
 
   const removeKeyDown = key => {
-    setKeysDown(
-      keysDown.filter(value => {
-        return value !== key;
-      })
-    );
+    if (mouseDown) {
+      setKeysDown([]);
+    } else {
+      setKeysDown(
+        keysDown.filter(value => {
+          return value !== key;
+        })
+      );
+    }
   };
 
   React.useEffect(() => {
@@ -112,6 +116,9 @@ export default function Pad() {
           }}
           onMouseLeave={() => {
             if (keysDown.length > 0) removeKeyDown(sound.letter);
+          }}
+          onMouseOut={() => {
+            removeKeyDown(sound.letter);
           }}
         >
           {sound.letter}
