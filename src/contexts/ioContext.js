@@ -27,7 +27,7 @@ export function IoProvider({ children }) {
           timestamp: Date.now(),
           letter: data,
         };
-
+        console.log("here");
         dispatch(setSoundToPlay(sound));
       });
 
@@ -61,7 +61,7 @@ export function IoProvider({ children }) {
   }
 
   useEffect(() => {
-    setSocket(socketIOClient("http://localhost:3001", { autoConnect: false }));
+    setSocket(socketIOClient(process.env.REACT_APP_API_BASE_URL, { autoConnect: false }));
   }, []);
 
   const value = {

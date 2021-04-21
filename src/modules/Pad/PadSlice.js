@@ -27,7 +27,7 @@ export const getSoundsFromGroup = (group = "") => dispatch => {
       letter: sound.key,
       keyCode: sound.keyCode,
       sound: new Howl({
-        src: [`http://localhost:3001/sounds/${sound.name}`],
+        src: [`${process.env.REACT_APP_API_BASE_URL}/sounds/${sound.name}`],
       }),
     }));
     dispatch(setSounds(sounds));

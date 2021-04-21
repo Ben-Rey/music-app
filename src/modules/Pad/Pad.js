@@ -37,7 +37,7 @@ export default function Pad() {
           letter: sound.key,
           keyCode: sound.keyCode,
           sound: new Howl({
-            src: [`http://localhost:3001/sounds/${sound.name}`],
+            src: [`${process.env.REACT_APP_API_BASE_URL}/sounds/${sound.name}`],
           }),
         }))
       );
@@ -52,8 +52,10 @@ export default function Pad() {
   // }, [keysDown]);
 
   useEffect(() => {
+    console.log(soundToPlay);
     const key = sounds.find(sound => sound.letter === soundToPlay.letter);
     if (key) {
+      console.log(key);
       key.sound.play();
     }
   }, [soundToPlay]);
