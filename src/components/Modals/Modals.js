@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
 import { typeScale, primaryFont } from "../../utils";
@@ -158,12 +158,12 @@ export const SignInModal = ({
   setPassword,
 }) => {
   const size = React.useContext(ResponsiveContext);
-
+  const [buttonActive, setButtonActive] = useState(false);
   return (
     <ModalLayout>
       {/* <animated.div style={useSpring(getAnimation(showModal))}> */}
       <ColumnModalWrapper size={size}>
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "50%" }}>
           <ModalHeader></ModalHeader>
           <EmailInput label="Email" setEmail={setEmail} />
           <PasswordInput label="Password" setPassword={setPassword} />
@@ -179,7 +179,11 @@ export const SignInModal = ({
             <PrimaryButton
               style={{ margin: "20px 0" }}
               onClick={e => handleLogin(e)}
-              modifiers={["large"]}
+              onMouseDown={() => setButtonActive(true)}
+              onMouseUp={() => setButtonActive(false)}
+              onTouchStart={() => setButtonActive(true)}
+              onTouchEnd={() => setButtonActive(false)}
+              modifiers={buttonActive ? ["active", "large"] : "large"}
             >
               Sign In
             </PrimaryButton>

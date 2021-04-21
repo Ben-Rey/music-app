@@ -22,9 +22,9 @@ export default function Login() {
       history.push("/");
     } catch (e) {
       console.log(e);
-      if (e.code.includes("invalid-email")) console.log("Invalid email");
-      if (e.code.includes("user-not-found")) console.log("User not found");
-      if (e.code.includes("wrong-password")) console.log("Wrong password");
+      if (e.code.includes("invalid-email")) alert("Invalid email");
+      if (e.code.includes("user-not-found")) alert("User not found");
+      if (e.code.includes("wrong-password")) alert("Wrong password");
     }
   }
 
