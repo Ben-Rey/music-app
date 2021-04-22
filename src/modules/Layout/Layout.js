@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import Pad from "../Pad/Pad";
 
-import { NavLayout, BoxInnerShadow, BoxCenterColumn, SecondaryButton } from "../../components";
+import {
+  NavLayout,
+  BoxInnerShadow,
+  BoxCenterColumn,
+  SecondaryButton,
+  PrimaryNavButton,
+} from "../../components";
 
 import { Textfit } from "react-textfit";
 
@@ -19,6 +25,13 @@ const LayoutGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+`;
+
+export const NavButtonGrid = styled.div`
+  display: grid;
+  grid-column-start: 2;
+  justify-items: center;
+  align-items: center;
 `;
 
 export default function Layout() {
@@ -47,9 +60,9 @@ export default function Layout() {
   return (
     <LayoutGrid onMouseDown={() => setMouseDown(true)} onMouseUp={() => setMouseDown(false)}>
       <Pad />
-      {/* <FlexCenter style={{ position: "fixed-bottom" }}>
+      <NavButtonGrid style={{ position: "fixed-bottom" }}>
         <PrimaryNavButton />
-      </FlexCenter> */}
+      </NavButtonGrid>
       <NavLayout display={size === "small" ? "none" : "block"}>
         <BoxCenterColumn>
           <SecondaryButton onClick={() => handleLogout()} modifiers={["large"]}>
