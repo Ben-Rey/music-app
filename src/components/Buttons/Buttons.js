@@ -61,31 +61,17 @@ export const PRIMARY_BUTTON_MODIFIERS = {
   `,
 };
 
-export const PrimaryButton = styled.button`
+export const Button = styled.button`
   position: relative;
   display: inline-block;
 
-  align-items: center;
-  justify-content: center;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
   padding: 40px;
 
   color: #fb7575;
-
-  background: linear-gradient(133.7deg, #dddddd 2.06%, #ffffff 95.18%), #e3edf7;
-
-  /* background-color: #9c9c9c; */
-  background-clip: text;
-  /* -webkit-background-clip: text; */
-
-  border: none;
-
-  box-shadow: ${props => props.theme.shadowNeutral};
-
+  border: 1px solid transparent;
+  
   overflow: hidden;
-
+  
   cursor: pointer;
 
   font-family: ${primaryFont};
@@ -97,7 +83,20 @@ export const PrimaryButton = styled.button`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
   
-  transition: box-shadow 0.1s linear, color 0.1s linear, background-color 0.2s linear;
+  transition: box-shadow 0.1s linear, color 0.1s linear, background-color 0.2s linear, border 0.2s linear, border-radius 0.1s linear;
+
+  &:focus {
+    outline: none;
+  }
+
+}
+
+  ${applyStyleModifiers(PRIMARY_BUTTON_MODIFIERS)};
+`;
+
+export const PrimaryButton = styled(Button)`
+  box-shadow: ${props => props.theme.shadowNeutral};
+  border-radius: 20px;
 
   &:disabled {
     background-color: ${props => props.theme.disabled};
@@ -109,11 +108,17 @@ export const PrimaryButton = styled.button`
     /* color: #85ffbd; */
   }
 
-  &:focus {
-    outline: none;
+  background: linear-gradient(133.7deg, #dddddd 2.06%, #ffffff 95.18%), #e3edf7;
+
+  ${applyStyleModifiers(PRIMARY_BUTTON_MODIFIERS)};
+`;
+
+export const SecondaryButton = styled(Button)`
+  border-radius: 10px;
+
+  &:hover {
+    border: 1px solid #fb7575;
+    border-radius: 20px;
   }
-
-}
-
   ${applyStyleModifiers(PRIMARY_BUTTON_MODIFIERS)};
 `;

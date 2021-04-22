@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import Pad from "../Pad/Pad";
 
-import { NavLayout, BoxInnerShadow, BoxCenterColumn } from "../../components";
+import { NavLayout, BoxInnerShadow, BoxCenterColumn, SecondaryButton } from "../../components";
+
 import { Textfit } from "react-textfit";
 
 import styled from "styled-components";
@@ -25,11 +26,23 @@ export default function Layout() {
   const { setMouseDown } = useMouse();
   const { currentUser } = useAuth();
   const { connect, socket } = useIo();
+  const { logout } = useAuth();
+
   const users = useSelector(state => state.users);
 
   useEffect(() => {
     connect(currentUser.email);
   }, [socket]);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      history.push("/");
+    } catch (err) {
+      console.log(err);
+      //   setError("Failed to log in");
+    }
+  };
 
   return (
     <LayoutGrid onMouseDown={() => setMouseDown(true)} onMouseUp={() => setMouseDown(false)}>
@@ -39,6 +52,9 @@ export default function Layout() {
       </FlexCenter> */}
       <NavLayout display={size === "small" ? "none" : "block"}>
         <BoxCenterColumn>
+          <SecondaryButton onClick={() => handleLogout()} modifiers={["large"]}>
+            Logout
+          </SecondaryButton>
           {users &&
             users.list.map(user => (
               <BoxInnerShadow key={user.userID} width="80%">

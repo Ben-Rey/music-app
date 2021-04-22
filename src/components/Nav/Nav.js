@@ -6,6 +6,7 @@ import { ResponsiveContext } from "grommet";
 export const NavLayout = styled.aside`
   width: 100%;
   height: 100%;
+  padding-top: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
