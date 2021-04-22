@@ -83,12 +83,11 @@ export const Button = styled.button`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
   
-  transition: box-shadow 0.1s linear, color 0.1s linear, background-color 0.2s linear, border 0.2s linear, border-radius 0.1s linear;
+  transition: box-shadow 0.1s linear, color 0.1s linear, background-color 0.2s linear, border 0.1s linear, border-radius 0.1s linear;
 
   &:focus {
     outline: none;
   }
-
 }
 
   ${applyStyleModifiers(PRIMARY_BUTTON_MODIFIERS)};
@@ -114,7 +113,7 @@ export const PrimaryButton = styled(Button)`
 `;
 
 export const SecondaryButton = styled(Button)`
-  border-radius: 10px;
+  border-radius: 15px;
 
   &:hover {
     border: 1px solid #fb7575;

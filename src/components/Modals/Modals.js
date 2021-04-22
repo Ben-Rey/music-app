@@ -67,10 +67,18 @@ const ModalLayout = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
   }
+
+  @media (max-width: 375px) {
+    height: 100vh;
+  }
+
+  @media (max-width: 320px) {
+    height: 100vh;
+  }
 `;
 
 const ModalWrapper = styled.div`
-  width: 80%;
+  width: 900px;
   // height: 500px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   font-family: ${primaryFont};
@@ -87,6 +95,20 @@ const ModalWrapper = styled.div`
 
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
+
+  @media (max-width: 768px) {
+    width: 400px;
+  }
+
+  @media (max-width: 375px) {
+    width: 360px;
+    height: 100%;
+  }
+
+  @media (max-width: 320px) {
+    width: 310px;
+    height: 100%;
+  }
 `;
 
 const ColumnModalWrapper = styled(ModalWrapper)`
@@ -125,6 +147,10 @@ const CloseModalButton = styled.button`
   padding: 0;
 `;
 
+const FormWrapper = styled.div`
+  width: ${props => (props.size === "small" ? "100%" : "50%")};
+`;
+
 export const SignUpModal = ({ showModal, setShowModal }) => {
   const size = React.useContext(ResponsiveContext);
 
@@ -161,46 +187,46 @@ export const SignInModal = ({
   const [buttonActive, setButtonActive] = useState(false);
   return (
     <ModalLayout>
-      {/* <animated.div style={useSpring(getAnimation(showModal))}> */}
-      <ColumnModalWrapper size={size}>
-        <div style={{ width: "50%" }}>
-          <ModalHeader></ModalHeader>
-          <EmailInput label="Email" setEmail={setEmail} />
-          <PasswordInput label="Password" setPassword={setPassword} />
+      <animated.div style={useSpring(getAnimation(showModal))}>
+        <ColumnModalWrapper size={size}>
+          <FormWrapper size={size}>
+            <ModalHeader></ModalHeader>
+            <EmailInput label="Email" setEmail={setEmail} />
+            <PasswordInput label="Password" setPassword={setPassword} />
 
-          <ButtonsModalWrapper>
-            {/* <PrimaryButton
+            <ButtonsModalWrapper>
+              {/* <PrimaryButton
                 style={{ margin: "16px 0" }}
                 modifiers={["large"]}
                 onClick={e => handleRegister(e)}
               >
                 Sign Up
               </PrimaryButton> */}
-            <PrimaryButton
-              style={{ margin: "20px 0" }}
-              onClick={e => handleLogin(e)}
-              onMouseDown={() => setButtonActive(true)}
-              onMouseUp={() => setButtonActive(false)}
-              onTouchStart={() => setButtonActive(true)}
-              onTouchEnd={() => setButtonActive(false)}
-              modifiers={buttonActive ? ["active", "large"] : "large"}
-            >
-              Sign In
-            </PrimaryButton>
-          </ButtonsModalWrapper>
-        </div>
-        <BoxCenterColumn>
-          <img
-            src={Illustrations.MoreMusic}
-            alt="Sign in to your account"
-            style={{ maxHeight: "200px" }}
-          />
-        </BoxCenterColumn>
-        {/* <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
+              <PrimaryButton
+                style={{ margin: "20px 0" }}
+                onClick={e => handleLogin(e)}
+                onMouseDown={() => setButtonActive(true)}
+                onMouseUp={() => setButtonActive(false)}
+                onTouchStart={() => setButtonActive(true)}
+                onTouchEnd={() => setButtonActive(false)}
+                modifiers={buttonActive ? ["active", "large"] : "large"}
+              >
+                Sign In
+              </PrimaryButton>
+            </ButtonsModalWrapper>
+          </FormWrapper>
+          <BoxCenterColumn>
+            <img
+              src={Illustrations.MoreMusic}
+              alt="Sign in to your account"
+              style={{ maxHeight: "200px" }}
+            />
+          </BoxCenterColumn>
+          {/* <CloseModalButton aria-label="Close modal" onClick={() => setShowModal(false)}>
           <CloseIcon />
         </CloseModalButton> */}
-      </ColumnModalWrapper>
-      {/* </animated.div> */}
+        </ColumnModalWrapper>
+      </animated.div>
     </ModalLayout>
   );
 };
